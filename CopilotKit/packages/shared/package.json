@@ -35,10 +35,10 @@
     "@types/jest": "^29.5.4",
     "@types/uuid": "^10.0.0",
     "eslint": "^8.56.0",
-    "eslint-config-custom": "workspace:*",
+    "eslint-config-custom": "1.4.6",
     "jest": "^29.6.4",
     "ts-jest": "^29.1.1",
-    "tsconfig": "workspace:*",
+    "tsconfig": "1.4.6",
     "tsup": "^6.7.0",
     "typescript": "^5.2.3"
   },
