@@ -58,7 +58,7 @@
     "@copilotkit/runtime-client-gql": "https://gitpkg.vercel.app/taghash/CopilotKit/CopilotKit/packages/runtime-client-gql?backport_2025_06",
     "@copilotkit/shared": "https://gitpkg.vercel.app/taghash/CopilotKit/CopilotKit/packages/shared?backport_2025_06",
     "@headlessui/react": "^2.1.3",
-    "react-markdown": "^10.1.0",
+    "react-markdown": "^6.0.3",
     "react-syntax-highlighter": "^15.6.1",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
