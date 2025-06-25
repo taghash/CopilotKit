@@ -53,7 +53,7 @@
     "@ag-ui/langgraph": "0.0.4",
     "@ag-ui/proto": "0.0.28",
     "@anthropic-ai/sdk": "^0.27.3",
-    "@copilotkit/shared": "https://gitpkg.vercel.app/taghash/CopilotKit/CopilotKit/packages/shared?backport_2025_06",
+    "@copilotkit/shared": "file:../shared",
     "@graphql-yoga/plugin-defer-stream": "^3.3.1",
     "@langchain/aws": "^0.1.9",
     "@langchain/community": "^0.3.29",

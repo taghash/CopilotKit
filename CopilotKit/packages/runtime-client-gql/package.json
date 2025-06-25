@@ -54,11 +54,11 @@
     "ts-node": "^10.9.2",
     "tsup": "^6.7.0",
     "typescript": "^5.4.5",
-    "@copilotkit/runtime": "https://gitpkg.vercel.app/taghash/CopilotKit/CopilotKit/packages/runtime?backport_2025_06",
+    "@copilotkit/runtime": "file:../runtime",
     "graphql": "^16.8.1"
   },
   "dependencies": {
-    "@copilotkit/shared": "https://gitpkg.vercel.app/taghash/CopilotKit/CopilotKit/packages/shared?backport_2025_06",
+    "@copilotkit/shared": "file:../shared",
     "@urql/core": "^5.0.3",
     "untruncate-json": "^0.0.1",
     "urql": "^4.1.0"
