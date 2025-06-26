@@ -1,4 +1,65 @@
 ```markdown
+# CopilotKit Packages Backport: Product Requirements and Checklist
+
+## 1. Overview & Goals
+
+The primary goal of this project is to backport the suite of `@copilotkit/*` packages to ensure compatibility with an older, specific technology stack. This will enable integration of CopilotKit functionalities into existing React projects that are constrained by these older versions and cannot easily upgrade.
+
+The project involves modifying all packages within the `CopilotKit/packages` directory of this monorepo. Success is defined by the ability to install these backported packages into a host React application running the target stack, import their components/functions, and utilize their core features without build-time or runtime errors related to version incompatibilities.
+
+## 2. Target Technology Stack for Compatibility
+
+The backported `@copilotkit/*` packages must be compatible with and usable in a React project built with the following specific versions:
+
+*   **React:** `16.13.1`
+*   **React Scripts:** `3.4.0` (This implies Create React App v3.x, which includes Webpack 4, Babel 7)
+*   **Babel Preset React App:** `7.8.3` (This is the Babel configuration used by `react-scripts 3.4.0`)
+*   **Node.js:** `12.13.1` (This is the runtime environment for both the build process of the host application and the runtime for any server-side aspects of CopilotKit if used in a Node context directly)
+*   **PNPM:** (While the specific version isn't a "target" for compatibility, it's the package manager for this monorepo, current version `9.5.0`. The backported packages should still be buildable and manageable with pnpm in a Node 12.13.1 environment).
+
+## 3. Scope of Work
+
+*   **All Packages:** All packages under `CopilotKit/packages/` are in scope. This includes:
+    *   `@copilotkit/shared`
+    *   `@copilotkit/runtime`
+    *   `@copilotkit/runtime-client-gql`
+    *   `@copilotkit/react-core`
+    *   `@copilotkit/react-textarea`
+    *   `@copilotkit/react-ui`
+    *   `@copilotkit/sdk-js`
+*   **Dependency Management:**
+    *   Downgrade all direct and peer dependencies (including React, ReactDOM, TypeScript, Jest, Zod, UI libraries, etc.) to versions compatible with the target stack.
+    *   Replace `workspace:*` protocol with relative `file:` paths during development and then with fixed version numbers for publishing (e.g., `x.y.z-react16-backport.0`).
+*   **Code Refactoring:**
+    *   Modify JavaScript/TypeScript code to remove or polyfill features not supported by Node 12 or browsers targeted by React 16 + Babel 7.
+    *   Adjust code to accommodate API changes in downgraded dependencies (e.g., `react-markdown` v10/v8 to v6).
+    *   Ensure React code uses patterns compatible with React 16 (e.g., avoiding React 17/18+ specific hooks or behaviors).
+*   **Build System Adjustments:**
+    *   Downgrade `tsup` to a version compatible with Node 12.
+    *   Modify `tsup.config.ts` files to align with the older `tsup` version and to output ES5-compatible code.
+    *   Adjust global and per-package `tsconfig.json` files (e.g., `target: "es5"`, `jsx: "react"`).
+*   **Testing:** Ensure existing tests (or modified versions) pass in the backported environment. This primarily means tests should run correctly with downgraded Jest and related tooling in a Node 12 environment.
+*   **Monorepo Integrity:** The pnpm workspace and turbo build setup should remain functional for building the backported packages.
+
+## 4. Key Challenges & Known Issues
+
+*   **Node Version Control:** The development environment *must* strictly use Node 12.13.1.
+*   **`tsup` Compatibility:** The current `tsup` version (`^6.7.0`) requires Node 14+. This will need to be downgraded, and configurations adapted.
+*   **`react-markdown` Downgrade:** `react-markdown` needs to be downgraded from v8/v10 to v6, which will involve significant API changes and refactoring of its usage in `@copilotkit/react-core` and `@copilotkit/react-ui`.
+*   **`workspace:*` Protocol:** This needs to be systematically replaced.
+*   **Transitive Dependencies:** Many deep dependencies might have their own Node/React version requirements that need careful investigation.
+*   **Polyfills:** Code relying on newer JS built-ins not present in Node 12 or target browsers will need polyfills.
+*   **TypeScript Version:** Finding a TypeScript version that works with Node 12, an older `tsup`, and the codebase will be key. Initial thought: `~3.8.3`.
+
+## 5. Deliverables
+
+*   A new branch in the repository (e.g., `feat/backport-react16`) containing all changes.
+*   All `@copilotkit/*` packages modified to meet the compatibility requirements.
+*   Updated `package.json` files with correctly versioned dependencies.
+*   Successful build of all packages using `pnpm turbo run build` in a Node 12.13.1 environment.
+*   (Ideally) A simple example project demonstrating that the backported packages can be installed and used in an application running the target stack.
+*   This document (`Backport_Checklist.md`) updated with progress and any new findings.
+
 # Backport Checklist for CopilotKit to React 16 / Node 12
 
 This checklist outlines the major steps and considerations for backporting the CopilotKit packages to be compatible with React 16.13.1, react-scripts 3.4.0, babel-preset-react-app 7.8.3, and Node 12.13.1.
