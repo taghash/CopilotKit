@@ -7,5 +7,9 @@ export default defineConfig((options: Options) => ({
   minify: false,
   external: [],
   sourcemap: true,
+  // Ensure esbuild targets es5
+  esbuildOptions(options) {
+    options.target = "es5";
+  },
   ...options,
 }));

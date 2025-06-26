@@ -32,23 +32,23 @@
     "unlink:global": "pnpm unlink --global"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.4",
-    "@types/uuid": "^10.0.0",
+    "@types/jest": "^24.9.0",
+    "@types/uuid": "^8.3.0",
     "eslint": "^8.56.0",
-    "eslint-config-custom": "workspace:*",
-    "jest": "^29.6.4",
-    "ts-jest": "^29.1.1",
-    "tsconfig": "workspace:*",
+    "eslint-config-custom": "file:../../utilities/eslint-config-custom",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0",
+    "tsconfig": "file:../../utilities/tsconfig",
     "tsup": "^6.7.0",
-    "typescript": "^5.2.3"
+    "typescript": "~3.8.3"
   },
   "dependencies": {
     "@segment/analytics-node": "^2.1.2",
-    "chalk": "4.1.2",
+    "chalk": "^3.0.0",
     "graphql": "^16.8.1",
-    "uuid": "^10.0.0",
-    "zod": "^3.23.3",
-    "zod-to-json-schema": "^3.23.5"
+    "uuid": "^8.3.2",
+    "zod": "1.11.15",
+    "zod-to-json-schema": "3.6.1"
   },
   "keywords": [
     "copilotkit",
